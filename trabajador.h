@@ -12,18 +12,14 @@ class Trabajador{
 	public:
 
 		Trabajador(int legajo,string nombre);
-		int legajoDelTrabajador();
-		string nombreDelTrabajador();
-		void asignar_sueldo_a_cobrar();
-		virtual float calcularSueldo();
-		virtual void mostrarDatos();
+		int obtener_legajo();
+		string obtener_nombre();
+		void asignar_sueldo_a_cobrar(float nuevo_sueldo);
+		void obtener_sueldo_a_cobrar();
+		virtual float liquidar_sueldo();
+		virtual void a_cadena();
 		~Trabajador();
 	
 };
-
-
-
-
-
 
 #endif
