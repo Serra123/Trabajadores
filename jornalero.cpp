@@ -6,6 +6,6 @@ Jornalero::Jornalero(int legajo,string nombre,float sueldo_diario,int cantidad_d
 	this->cantidad_dias = cantidad_dias;
 }
 
-float Jornalero::calcular_sueldo(){
+float Jornalero::liquidar_sueldo(){
 	return sueldo_diario * cantidad_dias;
 }

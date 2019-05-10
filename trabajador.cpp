@@ -2,19 +2,22 @@
 #include "trabajador.h"
 
 Trabajador::Trabajador(int legajo,string nombre){
-
 	this->legajo = legajo;
 	this->nombre = nombre;
-
 }
- int Trabajador::legajoDelTrabajador(){
- 	return this->legajo;
+
+int Trabajador::obtener_legajo(){
+ 	return legajo;
  }
 
- string Trabajador::nombreDelTrabajador(){
- 	return this->nombre;
+string Trabajador::obtener_nombre(){
+ 	return nombre;
  }
 
- virtual float Trabajador::calcularSueldo(){
- 
+float Trabajador::obtener_sueldo_a_cobrar(){
+ 	return sueldo_a_cobrar;
+ }
+
+void Trabajador::asignar_sueldo_a_cobrar(float nuevo_sueldo){
+ 	sueldo_a_cobrar = nuevo_sueldo;
  }
