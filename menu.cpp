@@ -26,42 +26,43 @@ void Menu::cargar_lista(){
 void Menu::leer_trabajadores(ifstream &archivo_trabajadores){
     cout << "Acomodando trabajadores en lista..." << endl;
     char tipo_de_trabajador;
-    int legajo
-    string nombre;
     while(archivo_trabajadores >> tipo_de_trabajador){
-    	archivo_trabajadores >> legajo;
-    	archivo_trabajadores >> nombre;
-    	if(tipo_de_trabajador == TIPO_EMPLEADO){
-    		Empleado aux(legajo,nombre);
-    		float sueldo_mensual;
-    		int llegadas_tarde;
-    		int ausencias;
-    		aux->asginar_tipo_de_trabajador(tipo_de_trabajador);		
-    		aux->asignar_sueldo_mensual(archivo_trabajadores >> sueldo_mensual);
-    		aux->asignar_llegadas_tarde(archivo_trabajadores >> llegadas_tarde);
-    		aux->asignar_ausencias(archivo_trabajadores >> ausencias);
-    		lista_principal.agregar(aux);
-    	}else if(tipo_de_trabajador == TIPO_JORNALERO){
-    		Jornalero aux(legajo,nombre);
-    		float sueldo_diario;
-    		int dias_trabajados;
-    		aux->asignar_tipo_de_trabajador(tipo_de_trabajador);
-    		aux->asignar_sueldo_diario(archivo_trabajadores >> sueldo_diario);
-    		aux->asignar_dias_trabajados(archivo_trabajadores >> dias_trabajados);
-    		lista_principal.agregar(aux);
-    	}else if(tipo_de_trabajador == TIPO_CONSULTOR){
-    		Consultor aux(legajo,nombre);
-    		float sueldo_hora_catedra;
-    		int cantidad_horas_catedra;
-    		int dias_a_descontar;
-    		aux->asignar_tipo_de_trabajador(tipo_de_trabajador);
-    		aux->asignar_sueldo_hora_catedra(archivo_trabajadores >> sueldo_hora_catedra);
-    		aux->asignar_cantidad_horas_catedra(archivo_trabajadores >> cantidad_horas_catedra);
-    		aux->asginar_dias_a_descontar(archivo_trabajadores >> dias_a_descontar);
-    		lista_principal.agregar(aux);
-    	}else{
-    		cout << "ERROR, EN EL ARCHIVO DE TEXTO HAY UN TIPO DE EMPLEADO INVALIDO" << endl;
-    	}
+        cargar_trabajador_desde_archivo(tipo_de_trabajador,archivo_trabajadores);
+    }
+}
+void Menu::leer_trabajador(char tipo_de_trabajador, ifstream* archivo_trabajadores){
+    archivo_trabajadores >> legajo;
+    archivo_trabajadores >> nombre;
+    if(tipo_de_trabajador == TIPO_EMPLEADO){
+        Empleado aux(legajo,nombre);
+        float sueldo_mensual;
+        int llegadas_tarde;
+        int ausencias;
+        aux->asginar_tipo_de_trabajador(tipo_de_trabajador);        
+        aux->asignar_sueldo_mensual(archivo_trabajadores >> sueldo_mensual);
+        aux->asignar_llegadas_tarde(archivo_trabajadores >> llegadas_tarde);
+        aux->asignar_ausencias(archivo_trabajadores >> ausencias);
+        lista_principal.agregar(aux);
+    }else if(tipo_de_trabajador == TIPO_JORNALERO){
+        Jornalero aux(legajo,nombre);
+        float sueldo_diario;
+        int dias_trabajados;
+        aux->asignar_tipo_de_trabajador(tipo_de_trabajador);
+        aux->asignar_sueldo_diario(archivo_trabajadores >> sueldo_diario);
+        aux->asignar_dias_trabajados(archivo_trabajadores >> dias_trabajados);
+        lista_principal.agregar(aux);
+    }else if(tipo_de_trabajador == TIPO_CONSULTOR){
+        Consultor aux(legajo,nombre);
+        float sueldo_hora_catedra;
+        int cantidad_horas_catedra;
+        int dias_a_descontar;
+        aux->asignar_tipo_de_trabajador(tipo_de_trabajador);
+        aux->asignar_sueldo_hora_catedra(archivo_trabajadores >> sueldo_hora_catedra);
+        aux->asignar_cantidad_horas_catedra(archivo_trabajadores >> cantidad_horas_catedra);
+        aux->asginar_dias_a_descontar(archivo_trabajadores >> dias_a_descontar);
+        lista_principal.agregar(aux);
+    }else{
+        cout << "ERROR, EN EL ARCHIVO DE TEXTO HAY UN TIPO DE EMPLEADO INVALIDO" << endl;
     }
 }
 
@@ -83,7 +84,7 @@ void Menu::ejecutar_opcion(){
             buscar_trabajador();
             break;
         case OPCION_MOSTRAR_TABAJADORES:
-            mostrar_trabajadores_del_chango();
+            mostrar_trabajadores();
             break;
         case OPCION_SALIR:
             cout << "Saliendo" << endl;
@@ -119,7 +120,7 @@ void Menu::cargar_trabajador(){
 	Trabajador* nuevo_trabajador;
 	pedir_datos_trabajador(tipo_de_trabajador,nuevo_trabajador);
 	lista_principal.agregar(nuevo_trabajador);
-    
+    }
 }
 
 void Menu::pedir_datos_trabajador(char tipo_de_trabajador, Trabajador* nuevo_trabajador){

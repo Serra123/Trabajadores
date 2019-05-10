@@ -45,13 +45,22 @@ class Menu{
         void cargar_lista();
 
         /*
-        *Descripción: Lee el archivo "trabajadores.txt" guardando sus características en la lista de clase trabajadores del atributo "lista_principal".
+        *Descripción: Mientras pueda leer una linea del archivo "trabajadores.txt", llama a la funcion que lee de a un trabajador
         *Pre:   El archivo "trabajadores.txt" debe existir. la lista perteneciente al atributo
                 "lista_principal" debe estar correctamente inicializada. El archivo de lectura debe estar posicionado sobre 
                 el primer trabajador a leer
         *Post:  Guarda los trabajadores en la lista de trabajadores del atributo "lista_principal".
         */
         void leer_trabajadores(ifstream &archivo_trabajadores);
+
+        /*
+        *Descripción: Lee las suficientes lineas del archivo "trabajadores.txt" como para cargar un trabajador, y carga este mismo en la lista_principal
+        *Pre:   El archivo pasado por parametro debe existir.La lista perteneciente al atributo
+                "lista_principal" debe estar correctamente inicializada. 
+                El archivo de lectura debe estar posicionado sobre el legajo del trabajador a leer
+        *Post:  Guarda un trabajador en la lista de trabajadores del atributo "lista_principal" segun el tipo de trabajador que sea.
+        */
+        void Menu::leer_trabajador(char tipo_de_trabajador, ifstream* archivo_trabajadores);
 
         /*
         *Descripción: Muestra por consola los trabajadores actuales de la lista "lista_principal". Mostrando nombre,legajo y sueldo a cobrar
